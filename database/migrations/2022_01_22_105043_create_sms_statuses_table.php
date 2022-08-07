@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSmsStatusesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('sms_statuses', function (Blueprint $table) {
+            $table->id();
+
+            
+            $table->bigInteger('sms_id'); //->unique();
+            // $table->foreign('sms_id')->references('id')->on('sms')->onDelete('cascade');
+
+            $table->string('status')->default('Pending');
+
+            $table->string('description');
+            $table->string('notes');
+            
+
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('sms_statuses');
+    }
+}
